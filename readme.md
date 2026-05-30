@@ -45,4 +45,4 @@ Issues may be opened to report issues with the ranking centre, NOT for customer 
 
 ## Publishing
 
-Github workflow automatically builds and pushes to roblox & uploads to releases. [Relevant model](https://create.roblox.com/store/asset/117860497552510/rankgunapplicationcentre).
+Github workflow automatically builds and pushes to roblox & uploads to releases. [Relevant model](https://create.roblox.com/dashboard/creations/store/77678073057230/).
