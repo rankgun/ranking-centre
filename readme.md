@@ -12,8 +12,15 @@ The centre itself is a self-contained ModuleScript, compiled with roblox-ts and 
 
 ```
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local RankgunModule = require(ReplicatedStorage:FindFirstChild("rankgun-ranking-centre")) -- Or use asset ID: 77678073057230
+local AssetService = game:GetService("AssetService")
+local moduleModel = AssetService:LoadAssetAsync(77678073057230)
+moduleModel.Sandboxed = false
 
+local moduleInstance = moduleModel:FindFirstChild("MainModule")
+moduleInstance.Name = "rankgun-ranking-centre"
+moduleInstance.Parent = ReplicatedStorage
+
+local RankgunModule = require(moduleInstance)
 RankgunModule.Init({
     workspaceId = "<workspace-id>",
     apiToken = "<api-token>"
