@@ -39,3 +39,11 @@ export const tRankResults = t.interface({
     error: t.optional(t.string),
     code: t.optional(t.string),
 })
+
+// init config
+
+export type RankgunInitConfig = {
+    workspaceId: string,
+    apiToken: string,
+    verbose?: boolean
+};

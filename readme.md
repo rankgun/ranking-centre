@@ -23,7 +23,8 @@ moduleInstance.Parent = ReplicatedStorage
 local RankgunModule = require(moduleInstance)
 RankgunModule.Init({
     workspaceId = "<workspace-id>",
-    apiToken = "<api-token>"
+    apiToken = "<api-token>",
+    -- verbose = true, -- optional; logs API requests/responses to the server console for debugging
 })
 ```
 
@@ -31,6 +32,22 @@ RankgunModule.Init({
 > As a RankGun customer, use the loader scripts available for download in your [Workspace](https://www.rankgun.works/workspace/), which will pre-fill the necessary details and automatically update.
 
 Before using, you must enable a few Experience Settings - namely, Security -> Allow HTTP Requests and Allow Loading Third Party Assets. 
+
+## Telemetry
+
+So that RankGun can support self-hosted centres, the centre reports lightweight, aggregate
+operational telemetry to RankGun's API (`/api/telemetry`) using the same API key it already
+uses for ranking. This lets RankGun see whether a centre is online, what build it's running,
+how rank redemptions are converting, and where API calls are failing.
+
+It sends only instance-level facts (centre version, place/universe/server id, environment,
+current player count, uptime) and a small set of events: `centre_boot`, `heartbeat`,
+`ranks_loaded`, `rank_redeem_attempt`, `gamepass_not_owned`, `rank_result`, and `api_error`
+(HTTP status + short error code only).
+
+**No end-user data is ever collected** — no UserIds, usernames, or raw error bodies. All
+requests are best-effort and run on a background thread, so telemetry never affects gameplay.
+See `src/server/telemetry.ts`.
 
 ## Development
 
